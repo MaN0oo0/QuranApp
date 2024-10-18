@@ -27,7 +27,7 @@
 
     loadSurahByJuz = (juzId) => {
         $.ajax({
-            url: `http://api.alquran.cloud/v1/juz/${juzId}`,
+            url: `https://api.alquran.cloud/v1/juz/${juzId}`,
             type: "GET",
 
         }).done(function (server_data) {
@@ -67,7 +67,7 @@
         $("#Page_title").text("إقرأ القرآن بالسورة");
 
         $.ajax({
-            url: ` http://api.alquran.cloud/v1/surah/${number}`,
+            url: ` https://api.alquran.cloud/v1/surah/${number}`,
             type: "GET",
 
         }).done(function (server_data) {

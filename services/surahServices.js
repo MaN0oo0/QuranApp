@@ -4,7 +4,7 @@ document.title = `${localStorage.getItem("AppTitle")} | surah`;
 var Container = document.querySelector(".surahContainer");
 loadSurahs = () => {
   $.ajax({
-    url: "http://api.alquran.cloud/v1/surah",
+    url: "https://api.alquran.cloud/v1/surah",
     type: "GET",
   })
     .done(function (server_data) {
@@ -73,7 +73,7 @@ CreateChosenSurahTemp = (server_data) => {
 };
 loadSurah = (num) => {
   $.ajax({
-    url: `http://api.alquran.cloud/v1/surah/${num}`,
+    url: `https://api.alquran.cloud/v1/surah/${num}`,
     type: "GET",
   })
     .done(function (server_data) {
