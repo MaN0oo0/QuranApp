@@ -15,6 +15,9 @@ const loadNavBar = function () {
       console.log(e.target.getAttribute("data-route"));
       if (e.target.getAttribute("data-route")) {
         $("#_renderBody").load(Urls[e.target.getAttribute("data-route")].Url);
+        if($("#navbarNavDropdown").hasClass("show")){
+          $("#navbarNavDropdown").removeClass("show");
+        }
       }
     });
   });
