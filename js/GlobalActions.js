@@ -1,4 +1,3 @@
-export function add(x){
-    return x+5;
-}
 
+
+localStorage.setItem("AppTitle","Quran App")

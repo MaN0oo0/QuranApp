@@ -6,6 +6,8 @@ var Footer = "/Components/footerComponent.html";
 var Home = "/Components/homeComponent.html";
 var Juz = "/Components/juzComponent.html";
 var Surah = "/Components/surahComponent.html";
+var Ayah = "/Components/ayahComponent.html";
+
 export var Urls = {
   navbar: {
     Name: "navbar",
@@ -32,6 +34,25 @@ export var Urls = {
     Url: Surah,
     Option: "",
   },
+  ayah: {
+    Name: "ayah",
+    Url: Ayah,
+    Option: "",
+  },
+};
+
+//#endregion
+
+//#region Services
+var JuzServices = "/services/juzServices.js";
+var SurahServices="/services/surahServices.js";
+var AayahServices="/services/ayahServices.js";
+var HomeServices="/services/homeServices.js";
+export var ServicesUrl = {
+  juzServices: JuzServices,
+  surahServices: SurahServices,
+  ayaServices:AayahServices,
+  homeServices:HomeServices,
 };
 
 //#endregion

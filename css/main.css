@@ -193,3 +193,15 @@ hr {
 a{
     color: black;
 }
+._free{
+    display: block;
+    position: absolute;
+    background-image: url(/Images/pngtree-palestine-flag.png);
+    background-position: center center;
+    background-size: 16%;
+    max-height: 68px;
+    top: 96%;
+    left: 0px;
+
+   
+}

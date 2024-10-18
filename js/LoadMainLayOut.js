@@ -4,7 +4,7 @@
  * 3- load side bar
  * 4- load renderBody
  */
-import { add } from "./GlobalActions.js";
+
 import { Urls } from "./ComponentsURL.js";
 
 //#region Nav Bar
