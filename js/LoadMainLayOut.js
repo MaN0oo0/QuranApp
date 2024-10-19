@@ -28,6 +28,8 @@ const loadNavBar = function () {
   //       console.log(navBarHtml);
   //     }
   //   });
+
+  $("#_renderBody").load(Urls.homeServices.Url);
 };
 //#endregion
 
