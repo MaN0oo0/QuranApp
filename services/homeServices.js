@@ -11,4 +11,4 @@ window.setInterval(() => {
     .fail(function (jqXHR, status, err) {
       console.log("fail" + err);
     });
-}, 5000);
+}, 20000);
