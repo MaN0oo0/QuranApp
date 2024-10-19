@@ -29,7 +29,7 @@ const loadNavBar = function () {
   //     }
   //   });
 
-  $("#_renderBody").load(Urls.homeServices.Url);
+  $("#_renderBody").load(Urls.home.Url);
 };
 //#endregion
 
