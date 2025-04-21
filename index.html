@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quran App</title>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./css/bootstrap.css">
-    <link rel="stylesheet" href="./fonts/fontkitab.css">
-    <link rel="stylesheet" href="./css/main.css">
-    <script  src="./js/GlobalActions.js"></script>
-    <script src="./js/jquery-3.6.0.js"></script>
-    <script type="module" src="./js/LoadMainLayOut.js"></script>
+  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+
 </head>
 
 <body>
     <div class="position-relative">
-
         <nav class="rtl navbar  navbar-dark bg-dark navbar-expand-lg " id="_nav-bar"></nav>
         <span class="_free w-100">&nbsp;</span>
     </div>
@@ -30,17 +30,11 @@
         <div class="d-flex col-md-12 p-2 flex-column" id="_renderBody">
         </div>
     </main>
+
     <div class=" row d-flex justify-content-center mt-3 " id="_footer">
     </div>
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script type="module">
-        import { ServicesUrl } from './js/ComponentsURL.js'
-        $(function () {
-            $.get(ServicesUrl.homeServices
-            );
-        })
-    </script>
-    <!-- <script src="./js/main.js"></script> -->
+    <!-- <script src="./js/bootstrap.bundle.min.js"></script> -->
+    <script src="./app.js"></script>
 </body>
 
 </html>

@@ -3,13 +3,11 @@ loadJuz = () => {
   var juzCellContainer = $(".juzCellContainer");
   var cartoona = "";
   for (let index = 0; index < 30; index++) {
-    cartoona += `
-    <div class="col-md-3 juzCell" data-route=${index + 1}>
-    <b>الجزء  ${index + 1}</b>
-
-</div>
-
-`;
+    cartoona += createTemp("div",
+      ["col-md-3", "juzCell"], [],
+      createTemp("b", [], "", " الجزء " + Number(index + 1)),
+      [{ key: "data-route", value: Number( index + 1) }])
+      ;
   }
   juzCellContainer.html(cartoona);
   $(".juzCellContainer .juzCell").on("click", function () {
@@ -26,20 +24,19 @@ loadSurahByJuz = (juzId) => {
     type: "GET",
   })
     .done(function (server_data) {
-      loader();
+      // loader();
       $(".JuzCellSurah").html("");
       var temp = "";
 
       for (let key in server_data.data.surahs) {
         var surah = server_data.data.surahs[key];
 
-        temp += `
-                
-                    <div class="col-md-3  Surahcell" data-route=${surah.number}>
-    <a class="text-decoration-none " href='#renderSurah_${surah.number}'  data-route=${surah.number}>  ${surah.name}</a>
-
-</div>
-                `;
+        temp += createTemp("div",
+          ["col-md-3", "Surahcell"],
+          [], createTemp("a", ["text-decoration-none"], [], surah.name,
+            [{ key: "href", value: `/surah/${surah.number}` },
+            { key: "data-route", value: surah.number }]),
+          [{ key: "data-route", value: surah.number }]);
       }
       $(".JuzCellSurah").html(temp);
       $(".juzCellContainer .Surahcell a").on("click", function () {
@@ -48,8 +45,7 @@ loadSurahByJuz = (juzId) => {
           .addClass("activeSurah")
           .siblings()
           .removeClass("activeSurah");
-        var juzNumber = Number($(this).attr("data-route"));
-        loadSurahByNumber(juzNumber);
+        
       });
     })
     .fail(function (jqXHR, status, err) {
@@ -57,43 +53,5 @@ loadSurahByJuz = (juzId) => {
     });
 };
 
-loadSurahByNumber = (number) => {
-  $("#Page_title").text("إقرأ القرآن بالسورة");
-
-  $.ajax({
-    url: ` ${loadBaseAssets().baseUrl}/surah/${number}`,
-    type: "GET",
-  })
-    .done(function (server_data) {
-      loader();
-      var btn = `<div id="_play"><button class="btn btn-info" id="play_${server_data.data.number}" data-route="${server_data.data.number}"><i class="fa fa-play"></i></button></div>`;
-      var cartoona = `<center><h3 id="renderSurah_${server_data.data.number}">${server_data.data.name}</h3></center>`;
-      cartoona += btn;
-      var ayah = "";
-      $.each(server_data.data.ayahs, (i, e) => {
-        ayah = ` <label class="text-wrap ayahtext" >${e.text.replace(
-          "",
-          ""
-        )}</label>
-                <span class="surah-bracket-sign " onclick="${addSign()}">﴿${i + 1}﴾</span>
-          
-      
-        <br/>
-`;
-
-        cartoona += ayah;
-      });
-      $("#renderSurah").removeClass("d-none");
-      $("#renderSurah").html(cartoona);
-      $(`#play_${server_data.data.number}`).on("click", function () {
-        var surahNumber = Number($(this).attr("data-route"));
-        // playAudio(surahNumber);
-        loadPlayer(surahNumber);
-      });
-    })
-    .fail(function (jqXHR, status, err) {
-      console.log("fail" + err);
-    });
-};
 
 

@@ -10,7 +10,7 @@ loader = () => {
     document.body.appendChild(loader);
     setTimeout(() => {
         document.body.removeChild(loader);
-    }, 300);
+    }, 500);
 }
 loadBaseAssets = () => {
     return {
@@ -93,3 +93,16 @@ createTemp = (tagName = "", classess = [], styles = [], innerHTML = "", attr = [
     }
     return temp.outerHTML;
 }
+togelebtn = () => {
+
+    document.querySelector(".navbar-toggler-icon").addEventListener("click", function () {
+
+        if (document.querySelector(".navbar-collapse").classList.contains("collapse")) {
+            document.querySelector(".navbar-collapse").classList.remove("collapse");
+        } else {
+            document.querySelector(".navbar-collapse").classList.add("collapse");
+        }
+
+    })
+}
+togelebtn();

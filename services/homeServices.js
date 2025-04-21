@@ -21,8 +21,12 @@
 //     });
 // }
 
+// import { log } from "console";
+
 // window.setInterval(() => {
 //   let number = Math.floor(Math.random() * 118 + 1);
 //   loadAyah(number)
 // }, 5000);
 // loadAyah(2);
+console.log("home script loaded");
+
