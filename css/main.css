@@ -1,0 +1,257 @@
+body {
+    /* margin-top: 70px; */
+    background: url(/Images/bg4.png);
+    background-attachment: fixed;
+    background-size: 100%;
+
+
+}
+
+* {
+    scroll-behavior: "smooth";
+    scrollbar-color: red;
+}
+
+.loader {
+    margin: 20px auto;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    top: 14%;
+    background-color: transparent;
+}
+
+.loader img {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+div.container {
+    background-color: white;
+    opacity: 0.9;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.ltr {
+    direction: ltr;
+}
+
+.linkify {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.linkify:hover {
+    color: #2196f3;
+}
+
+.ayah-playing span.linkify {
+    color: #666666;
+}
+
+.style-ayah {
+    font-size: 40px;
+}
+
+.margin-left-15 {
+    margin-left: 15px;
+}
+
+.hide {
+    display: none;
+}
+
+.ayah-ending {
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+.ayah-number {
+    width: 90%;
+    height: 90%;
+    top: 0px;
+    left: 0;
+    z-index: 10;
+    margin-top: 25%;
+}
+
+.ayah-number-2digit {
+    width: 90%;
+    height: 90%;
+    top: 0px;
+    left: 0;
+    right: 5px;
+    z-index: 10;
+    margin-top: 25%;
+}
+
+.ayah-number-3digit {
+    width: 90%;
+    height: 90%;
+    top: 0px;
+    right: 1px;
+    left: 0;
+    z-index: 10;
+    margin-top: 25%;
+}
+
+.ayahEditionName:first-letter {
+    text-transform: capitalize;
+}
+
+.ayah-playing {
+    color: #2196f3;
+}
+
+/** Audio Playlist **/
+.mejs-list li:hover {
+    background: #ffa;
+    cursor: pointer;
+}
+
+.mejs-list li.current {
+    background: #cddfff;
+}
+
+.mejs-container {
+    position: relative;
+    background: #2196f3;
+    margin-top: 10px;
+}
+
+.playerBar {
+    background-color: white;
+}
+
+#surahConfigurator {
+    padding-top: 15px;
+
+}
+
+.surah-bracket-sign {
+    color: #0a1a01;
+    font-size: 125%;
+}
+
+.multiselect-container>li>a>label {
+    vertical-align: top;
+}
+
+.translationText {
+    font-size: 18px;
+}
+
+.juzCell a:hover,
+.juzCell:hover a,
+.juzCell p:hover a,
+.juzCell p a:hover,
+.juzCell p:hover a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.juzCell:hover,
+.Surahcell:hover {
+    background-color: #0c84e4;
+    color: white;
+}
+
+.juzCell p {
+    margin-top: 15px;
+}
+
+.surahRow:hover {
+    background-color: #0c84e4;
+}
+
+.surahRow:hover a,
+.surahRow:hover a:hover,
+.surahRow a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+hr {
+    border-top: 1px #222 solid;
+}
+
+.juzCell,
+.Surahcell {
+    background-color: #ccc;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.activeSurah {
+    background-color: #0c84e4;
+    color: white !important;
+}
+.addSign{
+    color: #0c84e4;
+    font-size: 125%;
+    font-weight: 600;
+
+}
+
+.activeTab>a {
+    background-color: #0c84e4;
+    color: black !important;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.ayahtext {
+    font-size: large;
+    font-weight: 600;
+}
+
+a {
+    color: black;
+}
+
+._free {
+    display: block;
+    position: absolute;
+    background-image: url(/Images/pngtree-palestine-flag.png);
+    background-position: center center;
+    background-size: 16%;
+    max-height: 68px;
+    top: 96%;
+    left: 0px;
+
+
+}
