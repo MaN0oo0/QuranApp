@@ -1,22 +1,22 @@
 
 const routes = {
     '/': {
-        title: 'Home',
+        title: 'الرائيسية',
         file: 'Pages/home.hbs',
         script: '/services/homeServices.js'
     },
     '/juz': {
-        title: 'Juz',
+        title: 'الجزء',
         file: 'Pages/juz.hbs',
         script: '/services/juzServices.js'
     },
     '/ayah': {
-        title: 'Ayah',
+        title: 'آية',
         file: 'Pages/ayah.hbs',
         script: '/services/ayahServices.js'
     },
     '/surah': {
-        title: 'Surah',
+        title: 'سورة',
         file: '/Pages/surah.hbs',
         script: '/services/surahServices.js'
     },
@@ -110,7 +110,7 @@ function removePreviousScripts() {
 }
 
 const MainScripts = () => {
-    let arr = [ { src: "/js/GlobalActions.js", type: "" },, { src: "/js/bootstrap.bundle.min.js", type: "" }];
+    let arr = [ { src: "/js/GlobalActions.js", type: "" }];
     arr.forEach((e) => {
 
         const script = document.createElement('script');
