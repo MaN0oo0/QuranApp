@@ -20,11 +20,11 @@ const routes = {
         file: '/Pages/surah.hbs',
         script: '/services/surahServices.js'
     },
-    '/surah/:id': {
-        title: 'Surah',
-        file: '/Pages/surahdetails.hbs',
-        script: '/services/surahDetailsServices.js'
-    },
+    // '/surah/:id': {
+    //     title: 'Surah',
+    //     file: '/Pages/surahdetails.hbs',
+    //     script: '/services/surahDetailsServices.js'
+    // },
 
 };
 const notFound = {

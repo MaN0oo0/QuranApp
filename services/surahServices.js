@@ -30,7 +30,7 @@ CreateSurahTemp = (Id, Name, numberOfAyahs) => {
   var Temp = `<div onclick="loadSurah(
 ${Id}
   )" class="col-md-3 align-items-center d-flex gap-2 flex-row  Surahcell" data-route=${Id} style="border-radius:20px;">
-    <a  class="text-decoration-none p-2" href="/surah/${Id}"  data-route=${Id}>  ${Name}</a>
+    <a  class="text-decoration-none p-2"   data-route=${Id}>  ${Name}</a>
    <span>(${numberOfAyahs})ايات</span>
     </div>
                 `;
