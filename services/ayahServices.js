@@ -1,10 +1,13 @@
 
 // This file contains the functions to load random Ayah and play audio for it.
 // It uses jQuery to make AJAX requests to the Quran API and manipulate the DOM.
-loadRandomAyah = () => {
+
+// import {loadPlayer,createTemp,loadBaseAssets } from "../js/GlobalActions.js";
+
+ loadRandomAyah = () => {
     let number = Math.floor((Math.random() * 6236) + 1);
     $.ajax({
-        url: `https://api.alquran.cloud/v1/ayah/${number}/ar.alafasy`,
+        url: `${loadBaseAssets().baseUrl}/ayah/${number}/ar.alafasy`,
         type: "get",
     }).done(function (server_data) {
         // loader();
@@ -32,7 +35,7 @@ loadRandomAyah = () => {
 }
 
 loadRandomAyah();
-playAudio = (num) => {
+ playAudio = (num) => {
     clearInterval(interval);
     loadPlayer(num, "ayah");
     var audio = document.querySelector("audio");

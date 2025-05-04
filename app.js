@@ -1,30 +1,41 @@
 
+// import { togelebtn } from './js/GlobalActions.js';
+
 const routes = {
     '/': {
+        path: "/",
         title: 'الرائيسية',
         file: 'Pages/home.hbs',
-        script: '/services/homeServices.js'
+        script: '/services/homeServices.js',
+        data: {
+            intro: "مقدمة",
+            introText: "القرآن الكريم هو الكتاب المقدس في الإسلام، ويعتبر كلام الله الذي أنزل على النبي محمد صلى الله عليه وسلم. يتكون القرآن من 114 سورة، ويحتوي على آيات تتناول مواضيع متنوعة تشمل العقيدة، العبادة، الأخلاق، والتوجيهات الحياتية.",
+
+        }
     },
     '/juz': {
+        path: "/juz",
         title: 'الجزء',
         file: 'Pages/juz.hbs',
-        script: '/services/juzServices.js'
+        script: '/services/juzServices.js',
+        data: {
+            intro: "إقرأ القرآن بالجزء",
+            introText: "الجزء هو وحدة قياس في القرآن الكريم، حيث يتكون القرآن من 30 جزءًا. كل جزء يحتوي على عدد من السور والآيات. يتم تقسيم القرآن إلى أجزاء لتسهيل القراءة والحفظ.",
+        }
     },
     '/ayah': {
+        path: "/ayah",
         title: 'آية',
         file: 'Pages/ayah.hbs',
         script: '/services/ayahServices.js'
     },
     '/surah': {
+        path: "/surah",
         title: 'سورة',
         file: '/Pages/surah.hbs',
         script: '/services/surahServices.js'
     },
-    // '/surah/:id': {
-    //     title: 'Surah',
-    //     file: '/Pages/surahdetails.hbs',
-    //     script: '/services/surahDetailsServices.js'
-    // },
+    'AppName': "الْقُرْآن الْكَرِيْم"
 
 };
 const notFound = {
@@ -34,6 +45,7 @@ const notFound = {
 
 
 function loadTemplate(url, data = {}) {
+
     return fetch(url)
         .then(res => res.text())
         .then(src => Handlebars.compile(src)(data));
@@ -53,16 +65,9 @@ function matchRoute(path) {
 }
 
 function route(path) {
-
-    if (!document.querySelector(".navbar-collapse").classList.contains("collapse")) {
-        document.querySelector(".navbar-collapse").classList.add("collapse");
-    } else {
-        // document.querySelector(".navbar-collapse").classList.remove("collapse");
-    }
+checkDropdown();
     const { route: r, params } = matchRoute(path);
-    
-
-    loadTemplate(r.file).then(html => {
+    loadTemplate(r.file, getDataFromRoute(path)).then(html => {
         // loader();
         document.getElementById('_renderBody').innerHTML = html;
         document.title = r.title;
@@ -77,6 +82,7 @@ function route(path) {
         }
         window.pageParams = params; // make accessible in page scripts
     });
+
 }
 
 
@@ -99,9 +105,9 @@ function navigate(e) {
 function loadScript(src) {
     const existing = document.querySelector(`script[data-page-script]`);
     if (existing) existing.remove();
-
     const script = document.createElement('script');
     script.src = src;
+    // script.type = "module";
     script.setAttribute('data-page-script', 'true');
     document.body.appendChild(script);
 }
@@ -110,7 +116,7 @@ function removePreviousScripts() {
 }
 
 const MainScripts = () => {
-    let arr = [ { src: "/js/GlobalActions.js", type: "" }];
+    let arr = [{ src: "/js/GlobalActions.js", type: "" }];
     arr.forEach((e) => {
 
         const script = document.createElement('script');
@@ -122,26 +128,51 @@ const MainScripts = () => {
     );
 }
 const MainStyles = () => {
-    let arrstyles = [ { href: "/fonts/fontkitab.css" }, { href: "/css/main.css" }]
+    let arrstyles = [{ href: "/fonts/fontkitab.css" }, { href: "/css/main.css" }]
     arrstyles.forEach(style => {
         const link = document.createElement('link');
         link.href = style.href; link.rel = 'stylesheet';
         document.head.appendChild(link);
     });
 }
+const getDataFromRoute = (route) => {
+    const data = routes[route];
+    console.log(data);
 
-
+    if (data) {
+        return data.data;
+    }
+    return null;
+}
+Handlebars.registerHelper('times', function (n, block) {
+    var accum = '';
+    for (var i = 1; i <= n; ++i)
+        accum += block.fn(i);
+    return accum;
+}); 
+let checkDropdown = () => {
+    if ($(".navbar-collapse").hasClass("collapse")) {
+        $(".navbar-collapse").removeClass("collapse");
+    } else {
+        $(".navbar-collapse").addClass("collapse");
+    }
+}
 window.addEventListener('popstate', () => route(location.pathname));
 window.addEventListener('DOMContentLoaded', () => {
    
-    loadTemplate('/partials/navbar.hbs').then(html => {
+
+    loadTemplate('/partials/navbar.hbs', routes).then(html => {
+        MainScripts();
+        MainStyles();
+
+        removePreviousScripts()
         document.getElementById('_nav-bar').innerHTML = html;
         loadTemplate('/partials/footer.hbs').then(html => {
             document.getElementById('_footer').innerHTML = html;
-            MainScripts();
-            MainStyles();
+            // removePreviousScripts();
         });
         document.body.addEventListener('click', navigate);
         route(location.pathname);
+     
     });
 });

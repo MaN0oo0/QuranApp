@@ -10,7 +10,7 @@
     }
 </style>
 <div class="container-fluid">
-    <a class="navbar-brand font-kitab">الْقُرْآن الْكَرِيْم</a>
+    <a class="navbar-brand font-kitab">{{./AppName}}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -19,19 +19,14 @@
     </button>
     <div class="collapse navbar-collapse gap-2 justify-content-between">
         <ul class="navbar-nav  ">
+            {{#each .}}
             <li class="nav-item activeTab">
-                <a class="nav-link " href="/" data-route="/">الرائيسية</a>
+                <a class="nav-link " href="{{this.path}}"
+                    data-route="{{this.path}}" data-bind="{{this.data}}">{{this.title}}</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link"  href="/juz" data-route="/juz">الجزء</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/ayah" data-route="/ayah">آية</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/surah" data-route="/surah">سورة</a>
-            </li>
+            {{/each}}
         </ul>
+
         <div><img width="100" src="/Images/free-palestine-with-flag.png"></div>
     </div>
 </div>

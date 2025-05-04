@@ -1,24 +1,11 @@
- Container=document.getElementById("renderSurah");
-loadJuz = () => {
-  var juzCellContainer = $(".juzCellContainer");
- 
-  juzCellContainer.html("");
-  var cartoona = "";
-  for (let index = 0; index < 30; index++) {
-    cartoona += createTemp("div",
-      ["col-md-3", "juzCell"], [],
-      createTemp("b", [], "", " الجزء " + Number(index + 1)),
-      [{ key: "data-route", value: Number(index + 1) }])
-      ;
-  }
-  juzCellContainer.html(cartoona);
-  $(".juzCellContainer .juzCell").on("click", function () {
-    var juzNumber = Number($(this).attr("data-route"));
-    loadSurahByJuz(juzNumber);
-  });
-};
 
-loadJuz();
+
+
+$(".juzCellContainer .juzCell").on("click", function () {
+  var juzNumber = Number($(this).attr("data-route"));
+  loadSurahByJuz(juzNumber);
+});
+// loadJuz();
 
 loadSurahByJuz = (juzId) => {
   $.ajax({
@@ -36,8 +23,8 @@ loadSurahByJuz = (juzId) => {
         temp += createTemp("div",
           ["col-md-3", "Surahcell"],
           [], createTemp("a", ["text-decoration-none"], [], surah.name,
-            [{ key: "onclick", value: `loadSurah(${surah.number})` },
-            { key: "data-route", value: surah.number }],{key:"id",value:`surah_${surah.number}`}),
+            [
+              { key: "data-route", value: surah.number }], { key: "id", value: `surah_${surah.number}` }),
           [{ key: "data-route", value: surah.number }]);
       }
       $(".JuzCellSurah").html(temp);
@@ -47,7 +34,7 @@ loadSurahByJuz = (juzId) => {
           .addClass("activeSurah")
           .siblings()
           .removeClass("activeSurah");
-
+        loadSurah(Number($(this).attr("data-route")));
       });
     })
     .fail(function (jqXHR, status, err) {
@@ -56,21 +43,27 @@ loadSurahByJuz = (juzId) => {
 };
 
 
-
+var Container = document.getElementById("renderSurah");
 CreateChosenSurahTemp = (server_data) => {
-  var btn = `<div id="_play"><button class="btn btn-info" id="play_${server_data.data.number}" data-route="${server_data.data.number}"><i class="fa fa-play"></i></button></div>`;
-  var cartoona = `<div style="display: flex
+  var btn = /*html*/`
+  <div id="_play"><button class="btn btn-info" id="play_${server_data.data.number}" data-route="${server_data.data.number}"><i class="fa fa-play"></i></button></div>`;
+  var cartoona = /*html*/`<div style="display: flex
 ;
     width: 100%;
     justify-content: space-between;
-    flex-direction: row-reverse;"><div class="text-start "><a onclick="loadSurah(${server_data.data.number > 0 ? server_data.data.number - 1 : 1})" 
-      class="btn btn-primary ${server_data.data.number - 1 == 0 ? "disabled" : ""}">رجوع</a></div><div class="text-end "><a onclick="loadSurah(${server_data.data.number < 114 ? server_data.data.number + 1 : 114})" 
-        class="btn btn-primary ${server_data.data.number == 114 ? "disabled" : ""}">التالي</a></div></div> 
-      <center><h3 id="renderSurah_${server_data.data.number}">${server_data.data.name}</h3></center>`;
+    flex-direction: row-reverse;"><div class="text-start ">
+    <a id="_PrevBtn"  
+      class="btn btn-primary ${server_data.data.number - 1 == 0 ? "disabled" : ""}" onclick="loadSurah(${server_data.data.number - 1})">رجوع</a></div>
+      <div class="text-end ">
+       <a  
+       onclick="loadSurah(${server_data.data.number + 1})"
+       id="_NextBtn" class="btn btn-primary ${server_data.data.number == 114 ? "disabled" : ""}">التالي</a></div></div> 
+      <center>
+        <h3 id="renderSurah_${server_data.data.number}">${server_data.data.name}</h3></center>`;
   cartoona += btn;
   var ayah = "";
   $.each(server_data.data.ayahs, (i, e) => {
-    ayah = ` <label class="text-wrap ayahtext" >${e.text.replace(
+    ayah = /*html*/ ` <label class="text-wrap ayahtext" >${e.text.replace(
       "\n",
       ""
     )}</label>
@@ -90,6 +83,7 @@ CreateChosenSurahTemp = (server_data) => {
   });
 };
 loadSurah = (num) => {
+  loader();
   $.ajax({
     url: `https://api.alquran.cloud/v1/surah/${num}`,
     type: "GET",

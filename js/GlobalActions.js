@@ -1,7 +1,7 @@
 // Global Variables
 localStorage.setItem("AppTitle", "Quran App");
 signs = localStorage.getItem("Signs") ? JSON.parse(localStorage.getItem("Signs")) : [{}];
-interval = 1;
+
 // Global Functions
 loader = () => {
     let loader = document.createElement("div");
@@ -62,13 +62,10 @@ getCurrentPage = () => {
 }
 
 
-createTemp = (tagName = "", classess = [], styles = [], innerHTML = "", attr = [{}]) => {
-
+const createTemp = (tagName = "", classess = [], styles = [], innerHTML = "", attr = [{}]) => {
 
     var temp = document.createElement(tagName);
-
-
-    if (classess) {
+    if (classess && classess.length > 0) {
         classess.forEach((e) => {
             temp.classList.add(e);
         })
@@ -81,28 +78,29 @@ createTemp = (tagName = "", classess = [], styles = [], innerHTML = "", attr = [
         })
     }
 
-
     if (innerHTML) {
         temp.innerHTML = innerHTML;
     }
     if (attr) {
         attr.forEach((e) => {
             temp.setAttribute(e.key, e.value);
-        }
-        )
+        })
     }
     return temp.outerHTML;
 }
-togelebtn = () => {
 
-    document.querySelector(".navbar-toggler-icon").addEventListener("click", function () {
+$(".navbar-toggler-icon").on("click", function () {
+    if ($(".navbar-collapse").hasClass("collapse")) {
+        $(".navbar-collapse").removeClass("collapse");
+    } else {
+        $(".navbar-collapse").addClass("collapse");
+    }
+})
 
-        if (document.querySelector(".navbar-collapse").classList.contains("collapse")) {
-            document.querySelector(".navbar-collapse").classList.remove("collapse");
-        } else {
-            document.querySelector(".navbar-collapse").classList.add("collapse");
-        }
 
-    })
-}
-togelebtn();
+
+
+
+// togelebtn();
+
+

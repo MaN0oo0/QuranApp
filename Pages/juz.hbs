@@ -1,8 +1,14 @@
 <div class="col-md-10">
-    <h4 id="Page_title">إقرأ القرآن بالجزء</h4>
+    <h4 id="Page_title">{{./intro}}</h4>
 </div>
-<div class="row col-md-12 mb-3 d-flex justify-content-center gap-1 juzCellContainer JuzCellSurah"
+<div
+    class="row col-md-12 mb-3 d-flex justify-content-center gap-1 juzCellContainer JuzCellSurah"
     style="max-height: fit-content;">
+    {{#times 30}}
+    <div class="col-md-3 juzCell" data-route="{{this}}"><b> الجزء
+            {{this}} </b></div>
+    {{/times }}
+
 </div>
 <div id="renderSurah" style=" border: 4px solid #eee;
 margin: 10px auto;
